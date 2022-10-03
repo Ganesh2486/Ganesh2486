@@ -1,44 +1,41 @@
-#include <stdio.h>
-#include <stdlib.h> // For exit()
-
+#include<stdio.h>
 int main()
 {
-	FILE *fptr1, *fptr2;
-	char filename[100], c;
+char com [30];
+int i=2,a=0;
 
-	printf("Enter the filename to open for reading \n");
-	scanf("%s", filename);
+printf("\n Enter Text : ");
 
-	// Open one file for reading
-	fptr1 = fopen(filename, "r");
-	if (fptr1 == NULL)
-	{
-		printf("Cannot open file %s \n", filename);
-		exit(0);
-	}
+gets(com);
+if(com[0]=='/')
+{
+if(com[1]=='/')
 
-	printf("Enter the filename to open for writing \n");
-	scanf("%s", filename);
+printf("\n It is a singleline Comment.");
 
-	// Open another file for writing
-	fptr2 = fopen(filename, "w");
-	if (fptr2 == NULL)
-	{
-		printf("Cannot open file %s \n", filename);
-		exit(0);
-	}
+else if(com [1]=='*')
+{
+for(i=2;i<=30;i++)
+{
+if(com[i]=='*'&&com[i+1]=='/')
+{
+printf("\n It is a multipleline Comment.");
+a=1;
+break;
+}
+else continue;
+}
+if(a==0)
 
-	// Read contents from file
-	c = fgetc(fptr1);
-	while (c != EOF)
-	{
-		fputc(c, fptr2);
-		c = fgetc(fptr1);
-	}
+printf("\n It is Not a Comment.");
+}
+else
 
-	printf("\nContents copied to %s", filename);
+printf("\n It is Not a Comment.");
 
-	fclose(fptr1);
-	fclose(fptr2);
-	return 0;
+}
+else
+
+printf("\n It is Not a Comment.");
+
 }
